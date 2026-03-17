@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Captioning AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="blob"></div>
+    
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero" id="hero-section">
+            <div class="badge">
+                <span class="dot"></span>
+                BEGINNER PROJECT
+            </div>
+            
+            <h1 class="title">
+                Turn any image<br>
+                <span>into <span class="accent-italic">words</span></span>
+            </h1>
+            
+            <p class="subtitle">
+                An easy-to-follow project combining a visual model<br>
+                (ResNet-50) and a language model (LSTM) to automatically<br>
+                describe what's in a photo.
+            </p>
+            
+            <div class="actions">
+                <button class="btn btn-primary" id="btn-demo">Try the demo &rarr;</button>
+                <a href="#" class="btn btn-secondary">View the code</a>
+            </div>
+        </section>
+
+        <!-- Demo Section -->
+        <section class="demo hidden" id="demo-section">
+            <header class="demo-header">
+                <span class="demo-label">LIVE DEMO</span>
+            </header>
+            
+            <div class="demo-card">
+                <div class="upload-area" id="drop-zone">
+                    <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp" hidden>
+                    
+                    <div class="upload-state" id="upload-state-empty">
+                        <div class="icon-circle">
+                            <span class="icon">🖼️</span>
+                        </div>
+                        <h3>Drop an image or click to browse</h3>
+                        <p>JPG · PNG · WEBP — up to 10 MB</p>
+                    </div>
+
+                    <div class="upload-state hidden" id="upload-state-preview">
+                        <img id="image-preview" src="" alt="Preview">
+                        <button class="btn-clear" id="btn-clear" title="Remove Image">&times;</button>
+                    </div>
+                </div>
+
+                <div class="result-area hidden" id="result-area">
+                    <div class="caption-box">
+                        <div class="caption-header">
+                            <h4>Generated Caption</h4>
+                        </div>
+                        <p id="caption-text" class="caption-text"></p>
+                    </div>
+                </div>
+
+                <button class="btn btn-action" id="btn-generate" disabled>Generate caption</button>
+            </div>
+            <button class="btn-back" id="btn-back">&larr; Back to Hero</button>
+        </section>
+    </main>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
