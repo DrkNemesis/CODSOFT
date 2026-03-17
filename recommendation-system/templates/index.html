@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextWatch (Python Server) - Recommendations</title>
+    <!-- Use Flask url_for to static files -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-effects">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+        <div class="glow glow-3"></div>
+    </div>
+    
+    <div class="app-container">
+        <header>
+            <div class="logo">
+                <i class="fa-solid fa-film"></i>
+                <h1>NextWatch <span style="font-size: 0.8rem; font-weight: 300; color: #9ba1a6;">by Python & Flask</span></h1>
+            </div>
+            <p>A student project demonstrating content-based recommendation logic processed on a backend server.</p>
+            <div class="stats">
+                <span id="liked-count">0</span> Liked Movies
+            </div>
+        </header>
+        
+        <main>
+            <section id="browse-section">
+                <div class="section-header">
+                    <h2>Browse Movies</h2>
+                </div>
+                <div class="movie-grid" id="movie-grid">
+                    <!-- Movies rendered initially via JS, injected from Python data -->
+                </div>
+            </section>
+
+            <section id="recommendations-section" class="hidden">
+                <div class="section-header">
+                    <h2 class="gradient-text">Top Recommendations From Server</h2>
+                    <button id="reset-btn" class="secondary-btn">Reset Profile</button>
+                </div>
+                <div class="movie-grid" id="recommendations-grid">
+                    <!-- Recommendations fetched from Python backend API will go here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Inject movie data from Python into JS context so JS has the list -->
+    <script id="movies-data" type="application/json">
+        {{ movies | tojson }}
+    </script>
+    <script>
+        // Pass the initial Python movies list directly into JS
+        window.initialMoviesData = JSON.parse(document.getElementById('movies-data').textContent);
+    </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
